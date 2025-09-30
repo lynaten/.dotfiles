@@ -1,0 +1,11 @@
+
+#!/bin/bash
+
+dir=$(fd -H -t d | fzf \
+    --preview 'tree -L 2 -C {} || ls -la --color=always {}' \
+    --preview-window=right:50%:wrap)
+
+if [ -n "$dir" ]; then
+    nvim --cmd "cd $dir" -c "Neotree toggle"
+fi
+

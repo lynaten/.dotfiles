@@ -1,0 +1,19 @@
+/*
+ * Rofi Colors
+ * Generated with Matugen
+ */
+
+* {
+    bg0: #101417;
+    bg1: #101417;
+    bg2: #272a2e;
+    bg3: #8dcdff;
+
+    fg0: #e0e3e7;
+    fg1: #e0e3e7;
+    fg2: #bfc7d1;
+    fg3: #89929a;
+
+    active: #8dcdff;
+    urgent: #ffb4ab;
+}

@@ -1,0 +1,32 @@
+#!/bin/bash
+# dotadd: move a file/folder from $HOME into ~/.dotfiles and symlink it back
+# Usage: dotadd <relative-path-from-home>
+# Example: dotadd TestFolder   OR   dotadd .config/nvim
+
+set -e
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <relative-path-from-home>"
+  exit 1
+fi
+
+target=$1
+src="$HOME/$target"
+dest="$HOME/.dotfiles/$target"
+
+echo "👉 Processing $target..."
+
+# Ensure parent directory exists in .dotfiles
+mkdir -p "$(dirname "$dest")"
+
+# Move into dotfiles
+mv "$src" "$dest" || {
+  echo "⚠️  $target not found in \$HOME"
+  exit 1
+}
+
+# Recreate symlink at original path pointing into dotfiles
+ln -s "$dest" "$src"
+
+echo "✅ Moved $target into ~/.dotfiles/$target"
+echo "✅ Symlinked back at ~/$target"

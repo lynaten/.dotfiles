@@ -1,0 +1,34 @@
+
+#!/bin/bash
+# dotrm: undo dotadd by restoring file/folder from ~/.dotfiles back into $HOME
+# Usage: dotrm <relative-path-from-home>
+# Example: dotrm TestFolder   OR   dotrm .config/nvim
+
+set -e
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <relative-path-from-home>"
+  exit 1
+fi
+
+target=$1
+src="$HOME/$target"
+dest="$HOME/.dotfiles/$target"
+
+echo "👉 Restoring $target..."
+
+# Remove symlink if it exists
+if [ -L "$src" ]; then
+  rm "$src"
+  echo "🗑️  Removed symlink at $src"
+fi
+
+# Move back from dotfiles
+if [ -e "$dest" ]; then
+  mkdir -p "$(dirname "$src")"
+  mv "$dest" "$src"
+  echo "✅ Restored $target to ~/$target"
+else
+  echo "⚠️  $target not found in ~/.dotfiles"
+  exit 1
+fi

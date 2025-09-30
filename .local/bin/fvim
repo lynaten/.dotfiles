@@ -1,0 +1,5 @@
+#!/bin/bash
+
+file=$(fd -H -t f | fzf --preview 'cat {}')
+[ -n "$file" ] && nvim "$file"
+

@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# Check if the user provided an argument
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <path_to_image>"
+    exit 1
+fi
+
+WALL_DIR="$HOME/Pictures/Wallpaper"
+IMAGE="$1"
+TEMP_IMAGE="$HOME/tmp/pywal_temp_image.png"
+HYPRPANEL_CONFIG="$HOME/.config/hyprpanel/config.json"
+IMAGEFULL="$WALL_DIR/$IMAGE"
+# GRUB_THEME_DIR="/boot/grub/themes/blur-grub2-fullhd"
+# GRUB_BG="$GRUB_THEME_DIR/background.png"
+
+# # if ! sudo true 2>/dev/null; then
+# #     notify-send "GRUB Theme Update Failed" "Need sudo rights (run 'sudo true' first)"
+# #     exit 1
+# # fi
+# notify-send "GRUB Theme Update" "Changing GRUB Theme"
+
+# # Detect current resolution
+# RES=$(xrandr | grep '*' | awk '{print $1}')
+
+# # Blur + resize to cover resolution
+# magick "$IMAGEFULL" \
+#   -resize "${RES}^" \
+#   -gravity center \
+#   -extent "$RES" \
+#   -blur 0x15 \
+#   /tmp/background.png
+
+# # Try to copy into /boot
+# if pkexec cp /tmp/background.png "$GRUB_BG"; then
+#     echo "Wallpaper successfully updated."
+# else
+#     notify-send "❌ GRUB Theme Update Failed" "No permission to write to $GRUB_BG"
+#     echo "Failed to update wallpaper — no permission."
+#     exit 1
+# fi
+
+
+# Send notification to the user
+notify-send "Changing Theme" "Applying new wallpaper and updating colors, please wait until confirmation..."
+
+magick "$IMAGE" \
+    \( -size "75x75" xc:black -alpha set -channel Alpha -evaluate Set 30% \) \
+    -gravity Center -composite \
+    \( -size "50x50" xc:black -alpha set -channel Alpha -evaluate Set 60% \) \
+    -gravity Center -composite \
+    \( -size "25x25" xc:black -alpha set -channel Alpha -evaluate Set 90% \) \
+    -gravity Center -composite "$TEMP_IMAGE"
+
+# Set wallpaper with swww using the original image
+# Generate pywal colors using the temporary modified image
+wal -i "$TEMP_IMAGE" -n -s -t -e
+matugen image "$IMAGE"
+
+CURRENT_WORKSPACE=$(hyprctl activeworkspace -j | jq '.id')
+SPOTIFY_WORKSPACE=$(hyprctl clients -j | jq -r '(.[] | select(.class == "Spotify") | .workspace.id) // -2')
+pkill -9 spotify
+
+
+if [ "$SPOTIFY_WORKSPACE" -gt 0 ]; then
+    SPOTIFY_WORKSPACE_COUNT=$(hyprctl workspaces -j | jq --argjson w "$SPOTIFY_WORKSPACE" '.[] | select(.id == $w) | .windows | length')
+else
+    SPOTIFY_WORKSPACE_COUNT=0
+fi
+# pkill -9 spotify
+if [ "$SPOTIFY_WORKSPACE" -gt 0 ] && [ "$SPOTIFY_WORKSPACE_COUNT" -eq 1 ]; then
+    hyprctl dispatch workspace $SPOTIFY_WORKSPACE
+    hyprpanel setWallpaper "$IMAGEFULL"
+    pywal-spicetify SharkBlue
+    sleep 1
+    hyprctl dispatch workspace $CURRENT_WORKSPACE
+else
+    occupied_workspaces=$(hyprctl workspaces -j | jq '.[] | .id' | sort -n)
+    next_workspace=1
+    while echo "$occupied_workspaces" | grep -q "^$next_workspace$"; do
+        next_workspace=$((next_workspace + 1))
+    done
+    hyprctl dispatch workspace $next_workspace
+    hyprpanel setWallpaper "$IMAGEFULL"
+    pywal-spicetify SharkBlue
+    sleep 1
+    hyprctl dispatch workspace $CURRENT_WORKSPACE
+fi
+
+# Remove the temporary image
+rm "$TEMP_IMAGE"
+
+notify-send "Theme Applied" "Wallpaper and theme updated successfully!"

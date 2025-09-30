@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Find all git repositories (only ".git", exclude ".github" and anything inside dotfolders)
+repos=$(fd -H -t d '^\.git$' ~ \
+    --exclude '.github' \
+    --exclude '.*/*' \
+    --prune \
+    | xargs -n1 dirname)
+
+# If nothing found, exit
+[ -z "$repos" ] && echo "No repos found" && exit 1
+
+# Use fzf: just show repos, no preview
+# repo=$(echo "$repos" | fzf \
+#     --bind "ctrl-n:transform-preview-label(basename {})" \
+#     --bind "ctrl-p:transform-preview-label({})" )
+#
+
+repo=$(echo "$repos" | fzf \
+    --preview 'tree -L 2 -C {} || ls -la --color=always {}' \
+    --preview-window=right:50%:wrap)
+
+# If something was selected, open it in Neovim with Neo-tree
+if [ -n "$repo" ]; then
+    nvim "$repo" -c "Neotree toggle"
+fi
+

@@ -1,0 +1,210 @@
+IMPORTANT SHELL COMMANDS
+
+GIT:
+git config  : Sets your name and email for commits.
+git init    : Initializes a new Git repository in the current directory.
+git add     : Stages changes to be committed.
+git commit  : Saves staged changes with a message.
+git status  : Shows the state of your working directory.
+git log     : Displays the commit history of the repository.
+git branch  : Lists, creates, or deletes branches.
+git checkout: Switches between branches or restores files.
+git merge   : Combines a specified branch into the current one.
+git clone   : Creates a local copy of a remote repository.
+git push    : Uploads local commits to a remote repository.
+git pull    : Fetches changes from a remote and merges them into the current branch.
+git fetch   : Downloads commits from a remote without merging them.
+git revert  : Creates a new commit that undoes the changes of a previous commit.
+git reset   : Undoes changes by un-staging files or resetting to a previous commit.
+
+PACMAN & AUR:
+yay -S                : Install a package from the AUR
+yay -Ss               : Search for AUR packages
+yay -Syu              : Update AUR packages
+yay -Rns $(yay -Qdtq) : Clean unused AUR build dependencies
+sudo pacman -Rns      : Remove a package and its configuration files
+pacman -Qe            : List explicitly installed packages
+sudo pacman -R        : Removes a package.
+sudo pacman -Rs       : Removes a package and its unneeded dependencies.
+sudo pacman -U        : Installs/upgrades a package from a local file.
+sudo pacman -Ss       : Searches for a package in repositories.
+sudo pacman -Sg       : Lists packages in a group.
+sudo pacman -Qi       : Shows detailed info on an installed package.
+sudo pacman -Q        : Checks if a package is installed.
+sudo pacman -Qdt      : Lists unneeded dependencies.
+sudo pacman -S        : Installs one or more packages.
+sudo pacman -Sc       : Clears old package versions from the cache.
+sudo pacman -Scc      : Clears all packages from the cache.
+sudo pacman -Sy       : Syncs package databases.
+sudo pacman -Syu      : Syncs databases and upgrades all packages.
+sudo pacman -Syyu     : Forces a database sync and upgrades packages.
+
+HYPRCTL:
+hyprctl reload                    : Reloads the Hyprland configuration.
+hyprctl dispatch exit             : Exits the Hyprland session.
+hyprctl setcursor                 : Sets the cursor theme and size.
+hyprctl dispatch killactive       : Closes the active window.
+hyprctl dispatch movetoworkspace  : Moves the active window to a workspace.
+hyprctl dispatch workspace        : Switches to a workspace.
+hyprctl dispatch centerwindow     : Centers the active window.
+hyprctl dispatch togglefloating   : Toggles floating mode for the active window.
+hyprctl clients                   : Lists all open windows and their properties.
+hyprctl activewindow              : Shows detailed information about the active window.
+hyprctl workspaces                : Lists all active workspaces.
+hyprctl monitors                  : Lists all connected monitors.
+hyprctl getoption                 : Gets the value of a specific option.
+hyprctl bind                      : Lists all currently active keybindings.
+hyprctl dispatch closewindow      : Kill a specific window by address
+hyprctl keyword monitor ,,,       : Set monitor configuration
+hyprctl dispatch exec             : Execute a command in Hyprland
+hyprctl version                   : Check Hyprland version
+
+
+SYSTEMCTL:
+sudo systemctl start    : Starts a service.
+sudo systemctl stop     : Stops a service.
+sudo systemctl restart  : Restarts a service.
+sudo systemctl reload   : Reloads a service's configuration.
+sudo systemctl status   : Shows the status of a service.
+sudo systemctl enable   : Enables a service to start at boot.
+sudo systemctl disable  : Disables a service from starting at boot.
+systemctl is-active     : Checks if a service is running.
+systemctl is-enabled    : Checks if a service is enabled.
+systemctl list-units    : Lists all loaded units.
+systemctl --failed      : Lists all failed units.
+sudo systemctl reboot   : Reboots the system.
+sudo systemctl poweroff : Shuts down the system.
+sudo systemctl suspend  : Suspends the system.
+sudo systemctl hibernate: Hibernates the system.
+
+BRIGHTNESSCTL:
+brightnessctl info          : Shows the current brightness, maximum brightness, and active device.
+brightnessctl set <value>   : Sets the brightness to a specific value.
+brightnessctl set <value>%  : Sets the brightness to a specific percentage.
+brightnessctl set +<value>  : Increases brightness by a specific value.
+brightnessctl set -<value>  : Decreases brightness by a specific value.
+brightnessctl set +<value>% : Increases brightness by a specific percentage.
+brightnessctl set -<value>% : Decreases brightness by a specific percentage.
+brightnessctl set 0         : Sets brightness to the minimum value (off).
+
+WPCTL:
+wpctl status                            : Shows the status of all audio devices and sinks.
+wpctl set-volume @DEFAULT_SINK@ <value> : Sets the volume for the default sink.
+wpctl set-volume @DEFAULT_SINK@ <value>+: Increases the volume.
+wpctl set-volume @DEFAULT_SINK@ <value>-: Decreases the volume.
+wpctl set-volume @DEFAULT_SINK@ <value>%: Sets the volume to a percentage.
+wpctl set-mute @DEFAULT_SINK@ toggle    : Toggles mute for the default sink.
+wpctl set-default <node_id>             : Sets a specific node as the default.
+
+
+SDDM:
+sudo nano /etc/sddm.conf                            : Edit SDDM configuration file
+ls /usr/share/sddm/themes/                          : List installed SDDM themes
+sddm-greeter --test --theme /usr/share/sddm/themes/ : Test an SDDM theme
+sudo systemctl restart sddm                         : Restart SDDM to apply changes
+yay -S sddm-                                        : Install an SDDM theme from AUR
+
+NMCLI:
+nmcli                                 : Check network status using NetworkManager
+nmcli device wifi list                : List available Wi-Fi networks
+nmcli device wifi connect password    : Connect to a Wi-Fi network
+sudo systemctl restart NetworkManager : Restart NetworkManager
+ip addr                               : Check IP address
+
+nmcli connection add type wifi con-name "ITB Hotspot" ifname <interface> ssid "ITB Hotspot" \
+  wifi-sec.key-mgmt wpa-eap 802-1x.eap peap \
+  802-1x.phase2-auth mschapv2 \
+  802-1x.identity "13523142@mahasiswa.itb.ac.id" \
+  802-1x.password "mypassword"
+
+nmcli connection add type wifi con-name eduroam ifname <interface> ssid eduroam \
+  wifi-sec.key-mgmt wpa-eap 802-1x.eap peap \
+  802-1x.phase2-auth mschapv2 \
+  802-1x.identity "13523142@mahasiswa.itb.ac.id" \
+  802-1x.password "mypassword"
+nmcli connection up <SSID>            : connect
+nmcli connection show                 : show connection
+nmcli connection delete uuid <UUID>   : delete connection with uuid
+nmcli connection delete <SSID>        : delete connection
+nmcli device status                   : show status (have uuid)
+
+
+SYSTEM MONITORING:
+top             : Check system resource usage
+htop            : Check system resource usage (user-friendly, requires installation)
+ps aux          : List running processes
+kill            : Kill a process by PID
+killall         : Kill a process by name
+df -h           : Monitor disk usage
+du -sh          : Monitor disk space for a specific directory
+free -h         : Monitor ram usage
+pgrep <name>    : find process by name
+pkill <name>    : kill a process by name
+pkill -9 <name> : kill a process by name by force
+
+FILE SYSTEM:
+rsync -avh --progress : Copy files with progress
+find / -name          : Find a file by name
+locate                : Locate a file (faster, uses database)
+sudo updatedb         : Update the locate database
+ln -s <path1> <path2> : Create a symbolic link
+ln -l <path>          : Check for a symbolic link
+tar -czvf .tar.gz     : Archive and compress a directory
+tar -xzvf .tar.gz     : Extract a .tar.gz archive
+rm -r myfolder        : remove recursively
+
+UTILITIES:
+fastfetch                                 : Check system information
+lscpu                                     : Display CPU information
+lshw                                      : Display hardware information
+sudo grub-mkconfig -o /boot/grub/grub.cfg : Update GRUB configuration
+uname -r                                  : Check kernel version
+sudo timedatectl set-ntp true             : Update system time
+lsblk                                     : List connected driver partitions
+sudo mount /dev/ /mnt                     : Mount a device
+sudo umount /mnt                          : Unmount a device
+
+NEOVIM:
+[Normal] left, down, up right   : h, j, k, l 
+[Normal] CTRL + left/right      : navigate between buffers
+[Normal] SHIFT + TAB / TAB      : navigate between tabs
+[Normal] SPACE + fa             : find all
+[Normal] SPACE + ff             : find files
+[Normal] SPACE + fz             : find text in this file
+[Normal] SPACE + fw             : find text throughout all dir
+[Normal] SPACE + e              : view directory
+[Normal] SPACE + x              : close buffer
+[Normal] > or <                 : tab
+[Visual] *                      : Search all blocked text
+[Command] /<text>               : Search typed text
+[Normal] n / N                  : navigate between searched texts
+[Visual] d                      : cut
+[Visual] "+y                    : copy to clipboard
+[Visual] y                      : copy to register
+[Normal] p                      : paste
+[Insert] CTRL+SHIFT+V           : paste
+[Command] :w                    : Save
+[Command] :wq                   : Save and quit
+[Command] :q!                   : Force quit
+[Command] :w                    : Save 
+[Command] :u                    : Undo 
+[Command] :r                    : Redo 
+:!mkdir -p mynewfolder
+:e mynewfolder/mynewfile.txt
+
+CHMOD:
+chmod u+x             : Add execute permission for the owner
+chmod g+w             : Add write permission for the group
+chmod o-r             : Remove read permission for others
+chmod 755             : Set read/write/execute for owner, read/execute for group and others
+chmod 644             : Set read/write for owner, read-only for group and others
+chmod -R 755          : Recursively set permissions for a directory
+chmod u=rwx,g=rx,o=rx : Set permissions symbolically (read/write/execute for owner, read/execute for group and others)
+chmod +x              : Add execute permission for all (owner, group, others)
+chmod 600             : Set read/write for owner only, no permissions for group or others
+chmod a+r             : Add read permission for all (owner, group, others)
+
+
+NVIDIA
+__GLX_VENDOR_LIBRARY_NAME=nvidia __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=1 %command% -unlockfps -framefixunbounded -nonetworknext -multikeyboard
+nvidia-smi
