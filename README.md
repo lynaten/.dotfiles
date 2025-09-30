@@ -65,6 +65,7 @@ networkmanager
 network-manager-applet
 noto-fonts-cjk
 nvidia-dkms
+nvidia-prime
 nvidia-utils
 nwg-look
 opencv

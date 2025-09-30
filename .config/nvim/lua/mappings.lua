@@ -106,4 +106,4 @@ map("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 
 -- Markdown preview toggle
 
-vim.keymap.set("n", "<C-S-v>", "<cmd>MarkdownPreviewToggle<cr>", { desc = "preview markdown" })
+vim.keymap.set("n", "<C-S-d>", "<cmd>MarkdownPreviewToggle<cr>", { desc = "preview markdown" })
