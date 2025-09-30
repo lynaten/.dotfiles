@@ -103,3 +103,7 @@ map("v", "<BS>", '"_d', { desc = "Delete selection with Backspace" })
 vim.keymap.set("n", "<C-S-f>", "<cmd>Telescope live_grep<cr>", { desc = "Live Grep" })
 -- -- Telescope find files (Ctrl + O)
 map("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+
+-- Markdown preview toggle
+
+vim.keymap.set("n", "<C-S-v>", "<cmd>MarkdownPreviewToggle<cr>", { desc = "preview markdown" })
