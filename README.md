@@ -69,6 +69,7 @@ nvidia-prime
 nvidia-utils
 nwg-look
 opencv
+openmpi
 os-prober
 otf-font-awesome
 pavucontrol
@@ -142,11 +143,15 @@ zsh-syntax-highlighting
 ### Yay (AUR) packages
 ```
 ags-hyprpanel-git
+anki-bin
+anki-bin-debug
 appmenu-glib-translator-git
 appmenu-glib-translator-git-debug
 aylurs-gtk-shell-git
 aylurs-gtk-shell-git-debug
 ckbcomp
+electron21-bin
+electron21-bin-debug
 git-credential-oauth
 git-credential-oauth-debug
 grub-customizer-debug

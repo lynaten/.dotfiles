@@ -208,3 +208,7 @@ chmod a+r             : Add read permission for all (owner, group, others)
 NVIDIA
 __GLX_VENDOR_LIBRARY_NAME=nvidia __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=1 %command% -unlockfps -framefixunbounded -nonetworknext -multikeyboard
 nvidia-smi
+
+prime-run <p>
+glxinfo | grep "OpenGL renderer"
+upower -i $(upower -e | grep BAT)

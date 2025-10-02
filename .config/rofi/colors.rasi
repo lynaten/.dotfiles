@@ -4,16 +4,16 @@
  */
 
 * {
-    bg0: #101417;
-    bg1: #101417;
-    bg2: #272a2e;
-    bg3: #8dcdff;
+    bg0: #121415;
+    bg1: #121415;
+    bg2: #292a2b;
+    bg3: #aacbe1;
 
-    fg0: #e0e3e7;
-    fg1: #e0e3e7;
-    fg2: #bfc7d1;
-    fg3: #89929a;
+    fg0: #e3e2e4;
+    fg1: #e3e2e4;
+    fg2: #c2c7cc;
+    fg3: #8c9196;
 
-    active: #8dcdff;
+    active: #aacbe1;
     urgent: #ffb4ab;
 }
