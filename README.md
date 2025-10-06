@@ -16,6 +16,8 @@ bluez-utils
 brightnessctl
 cheese
 discord
+docker
+docker-compose
 dosfstools
 efibootmgr
 fastfetch
@@ -58,6 +60,7 @@ linux-headers
 linux-lts
 linux-lts-headers
 mesa-utils
+mpv
 mtools
 nano
 neovim
@@ -80,6 +83,7 @@ pipewire-jack
 pipewire-pulse
 polkit-gnome
 polkit-kde-agent
+postgresql
 power-profiles-daemon
 python-pip
 python-watchdog
@@ -110,6 +114,7 @@ uwsm
 vim
 virtualbox
 virtualbox-guest-iso
+virtualbox-host-dkms
 virtualbox-host-modules-lts
 vlc
 vtk
@@ -135,6 +140,7 @@ xf86-video-nouveau
 xorg-server
 xorg-xev
 xorg-xinit
+zip
 zram-generator
 zsh
 zsh-syntax-highlighting

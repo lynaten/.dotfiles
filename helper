@@ -1,56 +1,104 @@
 IMPORTANT SHELL COMMANDS
 
 GIT:
-git config  : Sets your name and email for commits.
-git init    : Initializes a new Git repository in the current directory.
-git add     : Stages changes to be committed.
-git commit  : Saves staged changes with a message.
-git status  : Shows the state of your working directory.
-git log     : Displays the commit history of the repository.
-git branch  : Lists, creates, or deletes branches.
-git checkout: Switches between branches or restores files.
-git merge   : Combines a specified branch into the current one.
-git clone   : Creates a local copy of a remote repository.
-git push    : Uploads local commits to a remote repository.
-git pull    : Fetches changes from a remote and merges them into the current branch.
-git fetch   : Downloads commits from a remote without merging them.
-git revert  : Creates a new commit that undoes the changes of a previous commit.
-git reset   : Undoes changes by un-staging files or resetting to a previous commit.
+git config 
+    -> Sets your name and email for commits.
+git init
+    -> Initializes a new Git repository in the current directory.
+git add
+    -> Stages changes to be committed.
+git commit
+    -> Saves staged changes with a message.
+git status
+    -> Shows the state of your working directory.
+git log
+    -> Displays the commit history of the repository.
+git branch
+    -> Lists, creates, or deletes branches.
+git checkout
+    -> Switches between branches or restores files.
+git merge
+    -> Combines a specified branch into the current one.
+git clone
+    -> Creates a local copy of a remote repository.
+git push
+    -> Uploads local commits to a remote repository.
+git pull
+    -> Fetches changes from a remote and merges them into the current branch.
+git fetch
+    -> Downloads commits from a remote without merging them.
+git revert
+    -> Creates a new commit that undoes the changes of a previous commit.
+git reset
+    -> Undoes changes by un-staging files or resetting to a previous commit.
+
 
 PACMAN & AUR:
-yay -S                : Install a package from the AUR
-yay -Ss               : Search for AUR packages
-yay -Syu              : Update AUR packages
-yay -Rns $(yay -Qdtq) : Clean unused AUR build dependencies
-sudo pacman -Rns      : Remove a package and its configuration files
-pacman -Qe            : List explicitly installed packages
-sudo pacman -R        : Removes a package.
-sudo pacman -Rs       : Removes a package and its unneeded dependencies.
-sudo pacman -U        : Installs/upgrades a package from a local file.
-sudo pacman -Ss       : Searches for a package in repositories.
-sudo pacman -Sg       : Lists packages in a group.
-sudo pacman -Qi       : Shows detailed info on an installed package.
-sudo pacman -Q        : Checks if a package is installed.
-sudo pacman -Qdt      : Lists unneeded dependencies.
-sudo pacman -S        : Installs one or more packages.
-sudo pacman -Sc       : Clears old package versions from the cache.
-sudo pacman -Scc      : Clears all packages from the cache.
-sudo pacman -Sy       : Syncs package databases.
-sudo pacman -Syu      : Syncs databases and upgrades all packages.
-sudo pacman -Syyu     : Forces a database sync and upgrades packages.
+yay -S
+    -> Install a package from the AUR
+yay -Ss
+    -> Search for AUR packages
+yay -Syu
+    -> Update AUR packages
+yay -Rns $(yay -Qdtq)
+    -> Clean unused AUR build dependencies
+sudo pacman -Rns
+    -> Remove a package and its configuration files
+pacman -Qe
+    -> List explicitly installed packages
+sudo pacman -R
+    -> Removes a package.
+sudo pacman -Rs
+    -> Removes a package and its unneeded dependencies.
+sudo pacman -U
+    -> Installs/upgrades a package from a local file.
+sudo pacman -Ss
+    -> Searches for a package in repositories.
+sudo pacman -Sg
+    -> Lists packages in a group.
+sudo pacman -Qi
+    -> Shows detailed info on an installed package.
+sudo pacman -Q
+    -> Checks if a package is installed.
+sudo pacman -Qdt
+    -> Lists unneeded dependencies.
+sudo pacman -S
+    -> Installs one or more packages.
+sudo pacman -Sc
+    -> Clears old package versions from the cache.
+sudo pacman -Scc
+    -> Clears all packages from the cache.
+sudo pacman -Sy
+    -> Syncs package databases.
+sudo pacman -Syu
+    -> Syncs databases and upgrades all packages.
+sudo pacman -Syyu
+    -> Forces a database sync and upgrades packages.
+
 
 HYPRCTL:
-hyprctl reload                    : Reloads the Hyprland configuration.
-hyprctl dispatch exit             : Exits the Hyprland session.
-hyprctl setcursor                 : Sets the cursor theme and size.
-hyprctl dispatch killactive       : Closes the active window.
-hyprctl dispatch movetoworkspace  : Moves the active window to a workspace.
-hyprctl dispatch workspace        : Switches to a workspace.
-hyprctl dispatch centerwindow     : Centers the active window.
-hyprctl dispatch togglefloating   : Toggles floating mode for the active window.
-hyprctl clients                   : Lists all open windows and their properties.
-hyprctl activewindow              : Shows detailed information about the active window.
-hyprctl workspaces                : Lists all active workspaces.
+hyprctl reload
+    -> Reloads the Hyprland configuration.
+hyprctl dispatch exit
+    -> Exits the Hyprland session.
+hyprctl setcursor
+    -> Sets the cursor theme and size.
+hyprctl dispatch killactive
+    -> Closes the active window.
+hyprctl dispatch movetoworkspace
+    -> Moves the active window to a workspace.
+hyprctl dispatch workspace
+    -> Switches to a workspace.
+hyprctl dispatch centerwindow
+    -> Centers the active window.
+hyprctl dispatch togglefloating
+    -> Toggles floating mode for the active window.
+hyprctl clients
+    -> Lists all open windows and their properties.
+hyprctl activewindow
+    -> Shows detailed information about the active window.
+hyprctl workspaces
+    -> Lists all active workspaces.
 hyprctl monitors                  : Lists all connected monitors.
 hyprctl getoption                 : Gets the value of a specific option.
 hyprctl bind                      : Lists all currently active keybindings.
@@ -77,6 +125,7 @@ sudo systemctl poweroff : Shuts down the system.
 sudo systemctl suspend  : Suspends the system.
 sudo systemctl hibernate: Hibernates the system.
 
+
 BRIGHTNESSCTL:
 brightnessctl info          : Shows the current brightness, maximum brightness, and active device.
 brightnessctl set <value>   : Sets the brightness to a specific value.
@@ -86,6 +135,7 @@ brightnessctl set -<value>  : Decreases brightness by a specific value.
 brightnessctl set +<value>% : Increases brightness by a specific percentage.
 brightnessctl set -<value>% : Decreases brightness by a specific percentage.
 brightnessctl set 0         : Sets brightness to the minimum value (off).
+
 
 WPCTL:
 wpctl status                            : Shows the status of all audio devices and sinks.
@@ -98,18 +148,29 @@ wpctl set-default <node_id>             : Sets a specific node as the default.
 
 
 SDDM:
-sudo nano /etc/sddm.conf                            : Edit SDDM configuration file
-ls /usr/share/sddm/themes/                          : List installed SDDM themes
-sddm-greeter --test --theme /usr/share/sddm/themes/ : Test an SDDM theme
-sudo systemctl restart sddm                         : Restart SDDM to apply changes
-yay -S sddm-                                        : Install an SDDM theme from AUR
+sudo nano /etc/sddm.conf
+    -> Edit SDDM configuration file
+ls /usr/share/sddm/themes/
+    -> List installed SDDM themes
+sddm-greeter --test --theme /usr/share/sddm/themes/
+    -> Test an SDDM theme
+sudo systemctl restart sddm
+    -> Restart SDDM to apply changes
+yay -S sddm-
+    -> Install an SDDM theme from AUR
+
 
 NMCLI:
-nmcli                                 : Check network status using NetworkManager
-nmcli device wifi list                : List available Wi-Fi networks
-nmcli device wifi connect password    : Connect to a Wi-Fi network
-sudo systemctl restart NetworkManager : Restart NetworkManager
-ip addr                               : Check IP address
+nmcli
+    -> Check network status using NetworkManager
+nmcli device wifi list
+    -> List available Wi-Fi networks
+nmcli device wifi connect password
+    -> Connect to a Wi-Fi network
+sudo systemctl restart NetworkManager
+    -> Restart NetworkManager
+ip addr
+    -> Check IP address
 
 nmcli connection add type wifi con-name "ITB Hotspot" ifname <interface> ssid "ITB Hotspot" \
   wifi-sec.key-mgmt wpa-eap 802-1x.eap peap \
@@ -122,11 +183,17 @@ nmcli connection add type wifi con-name eduroam ifname <interface> ssid eduroam 
   802-1x.phase2-auth mschapv2 \
   802-1x.identity "13523142@mahasiswa.itb.ac.id" \
   802-1x.password "mypassword"
-nmcli connection up <SSID>            : connect
-nmcli connection show                 : show connection
-nmcli connection delete uuid <UUID>   : delete connection with uuid
-nmcli connection delete <SSID>        : delete connection
-nmcli device status                   : show status (have uuid)
+
+nmcli connection up <SSID>
+    -> connect
+nmcli connection show
+    -> show connection
+nmcli connection delete uuid <UUID>
+    -> delete connection with uuid
+nmcli connection delete <SSID>
+    -> delete connection
+nmcli device status
+    -> show status (have uuid)
 
 
 SYSTEM MONITORING:
@@ -142,6 +209,7 @@ pgrep <name>    : find process by name
 pkill <name>    : kill a process by name
 pkill -9 <name> : kill a process by name by force
 
+
 FILE SYSTEM:
 rsync -avh --progress : Copy files with progress
 find / -name          : Find a file by name
@@ -153,6 +221,7 @@ tar -czvf .tar.gz     : Archive and compress a directory
 tar -xzvf .tar.gz     : Extract a .tar.gz archive
 rm -r myfolder        : remove recursively
 
+
 UTILITIES:
 fastfetch                                 : Check system information
 lscpu                                     : Display CPU information
@@ -163,6 +232,7 @@ sudo timedatectl set-ntp true             : Update system time
 lsblk                                     : List connected driver partitions
 sudo mount /dev/ /mnt                     : Mount a device
 sudo umount /mnt                          : Unmount a device
+
 
 NEOVIM:
 [Normal] left, down, up right   : h, j, k, l 
@@ -192,6 +262,7 @@ NEOVIM:
 :!mkdir -p mynewfolder
 :e mynewfolder/mynewfile.txt
 
+
 CHMOD:
 chmod u+x             : Add execute permission for the owner
 chmod g+w             : Add write permission for the group
@@ -208,7 +279,93 @@ chmod a+r             : Add read permission for all (owner, group, others)
 NVIDIA
 __GLX_VENDOR_LIBRARY_NAME=nvidia __NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=1 %command% -unlockfps -framefixunbounded -nonetworknext -multikeyboard
 nvidia-smi
-
-prime-run <p>
 glxinfo | grep "OpenGL renderer"
 upower -i $(upower -e | grep BAT)
+
+
+POSTGRESQL
+sudo -iu postgres initdb -D /var/lib/postgres/data 
+    -> initialization
+
+sudo systemctl enable postgresql
+sudo systemctl start postgresql 
+
+psql -U {username} -d {database} -h {host} -p {port}
+    -> Run the PostgreSQL
+
+sudo systemctl stop postgresql
+sudo systemctl disable postgresql
+
+systemctl status postgresql
+pg_dump -U {username} -d {database_name} > {external_file_name}.sql
+    -> Dump a database into external file
+psql -U {username} -d {database_name} < {external_file_name}.sql
+    -> Restore database from external file
+
+POSTGRESQL QUERY
+create database {database_name};
+    -> create new database
+\l 
+    -> show databases in server
+\c {database_name} 
+    -> change current database;
+\dt 
+    -> show list of tables in database
+\dv 
+    -> show list of views in database
+\di 
+    -> show list of indexes in database
+\d {table_name}
+    -> show description field of a tabel
+drop database {database_name}; 
+    -> erase database (dont do this pls)
+CREATE DATABASE [new_db_name] WITH TEMPLATE [source_db] OWNER [username];
+    -> copy a database into a new one
+\timing
+    -> execution time
+
+
+DOCKER
+sudo modprobe br_netfilter
+sudo modprobe nf_nat
+sudo modprobe ip_tables
+sudo modprobe iptable_nat
+
+sudo systemctl enable --now containerd
+sudo systemctl enable docker docker.socket
+sudo systemctl start docker docker.socket
+sudo docker compose up -d
+
+sudo docker compose down
+sudo systemctl stop docker docker.socket
+sudo systemctl disable docker docker.socket
+sudo systemctl disable --now containerd
+
+sudo systemctl restart docker
+systemctl status docker 
+docker compose version
+docker compose ps
+docker compose logs
+docker ps
+docker ps -a
+docker stop <id/nama>
+docker rm <id/nama>
+docker images
+docker rmi <image>
+
+
+echo "blacklist snd_hda_intel" | sudo tee /etc/modprobe.d/blacklist-snd-hda.conf
+sudo rm /etc/modprobe.d/blacklist-snd-hda.conf
+
+BLUETOOTH
+bluetoothctl
+power on
+agent on
+default-agent
+scan on
+scan off
+pair <MAC_ADDR>
+trust <MAC_ADDR>
+connect <MAC_ADDR>
+exit
+bluetoothctl devices
