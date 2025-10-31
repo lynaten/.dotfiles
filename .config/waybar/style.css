@@ -1,0 +1,77 @@
+@import url("/home/lynaten/.cache/wal/colors-waybar.css");
+@import url("colors.css");
+
+* {
+    font-family: "Radio Canada Big", sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 100px;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @background;
+    margin: 0 0 0 0;
+}
+
+#workspaces button {
+    color: @color4;
+}
+
+#workspaces {
+    background-color: @background;
+    padding: 0 5px 0 0;
+}
+
+.modules-left {
+    margin-left: 12px;
+}
+
+.modules-right {
+    margin-right: 12px;
+}
+
+#battery,
+#pulseaudio,
+#backlight,
+#custom-weather {
+    color: @color5; /* color5 */
+    background-color: @background; /* background */
+    margin: 0 15px 0 0px;
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
+}
+
+#network {
+    color: @color2; /* color2 */
+    background-color: @background; /* background */
+    margin: 0 0px 0 0px;
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
+}
+
+#clock {
+    color: @color2; /* color3 */
+    background-color: @background; /* background */
+    margin: 0 15px 0 0;
+    padding: 0 15px 0 15px;
+}
+
+#pulseaudio {
+    color: @color4; /* color5 */
+}
+
+#backlight {
+    color: @color4; /* color5 */
+}
+
+#custom-weather {
+    color: @color5; /* color2 */
+    background-color: @background; /* background */
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
+}
+
+#custom-media {
+    color: @color4; /* color2 */
+    background-color: @background; /* background */
+    margin: 0 0px 0 15px;
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
+}

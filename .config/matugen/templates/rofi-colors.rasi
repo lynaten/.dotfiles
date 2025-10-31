@@ -1,5 +1,5 @@
 /*
- * Rofi Colors
+ * Rofi Colors – Enhanced Material You Mapping 2
  * Generated with Matugen
  */
 
@@ -7,13 +7,42 @@
     bg0: {{colors.background.default.hex}};
     bg1: {{colors.surface.default.hex}};
     bg2: {{colors.surface_container_high.default.hex}};
-    bg3: {{colors.primary.default.hex}};
+    bg3: {{colors.surface_container_highest.default.hex}};
 
     fg0: {{colors.on_background.default.hex}};
-    fg1: {{colors.on_background.default.hex}};
+    fg1: {{colors.on_surface.default.hex}};
     fg2: {{colors.on_surface_variant.default.hex}};
-    fg3: {{colors.outline.default.hex}};
+    fg3: {{colors.outline_variant.default.hex}};
+
+    accent: {{colors.primary.default.hex}};
+    accent-fg: {{colors.on_primary.default.hex}};
+    accent-alt: {{colors.primary_container.default.hex}};
+
+    secondary: {{colors.secondary.default.hex}};
+    tertiary: {{colors.tertiary.default.hex}};
 
     active: {{colors.primary.default.hex}};
+    active-fg: {{colors.on_primary.default.hex}};
     urgent: {{colors.error.default.hex}};
+    urgent-fg: {{colors.on_error.default.hex}};
+    warning: {{colors.error_container.default.hex}};
+    success: {{colors.tertiary.default.hex}};
+    info: {{colors.inverse_primary.default.hex}};
+
+    hover-bg: {{colors.surface_container_high.default.hex}};
+    hover-fg: {{colors.on_surface.default.hex}};
+    selected-bg: {{colors.primary_container.default.hex}};
+    selected-fg: {{colors.on_primary_container.default.hex}};
+    disabled-bg: {{colors.surface_container_lowest.default.hex}};
+    disabled-fg: {{colors.outline_variant.default.hex}};
+
+    border: {{colors.outline.default.hex}};
+    border-focus: {{colors.primary.default.hex}};
+    border-active: {{colors.secondary.default.hex}};
+    border-urgent: {{colors.error.default.hex}};
+
+    highlight: {{colors.tertiary_fixed_dim.default.hex}};
+    shadow: {{colors.shadow.default.hex}};
+    selection-outline: {{colors.primary.default.hex}};
 }
+

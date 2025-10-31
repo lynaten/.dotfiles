@@ -113,6 +113,39 @@ return {
         },
       }
     end,
-  }
+  },
+
+
+{
+  "nvimtools/none-ls.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    local null_ls = require("null-ls")
+
+    null_ls.setup({
+      sources = {
+        -- Python
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.diagnostics.flake8,
+
+        -- Web stack
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.formatting.phpcsfixer,
+        null_ls.builtins.diagnostics.phpcs,
+        null_ls.builtins.diagnostics.stylelint,
+      },
+    })
+
+    -- Optional: format on save for Python files
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*.py",
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end,
+    })
+  end,
+},
+
 
  }

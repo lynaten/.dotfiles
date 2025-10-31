@@ -111,3 +111,8 @@ require("image").setup({
 
 
 require("image").enable()
+
+require("lsp.python")
+
+
+require("configs.cmp")

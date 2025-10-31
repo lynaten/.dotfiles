@@ -1,19 +1,48 @@
 /*
- * Rofi Colors
+ * Rofi Colors – Enhanced Material You Mapping 2
  * Generated with Matugen
  */
 
 * {
-    bg0: #101417;
-    bg1: #101417;
-    bg2: #272a2e;
-    bg3: #8dcdff;
+    bg0: #18120b;
+    bg1: #18120b;
+    bg2: #2f2921;
+    bg3: #3b342b;
 
-    fg0: #e0e3e7;
-    fg1: #e0e3e7;
-    fg2: #bfc7d1;
-    fg3: #89929a;
+    fg0: #ede0d4;
+    fg1: #ede0d4;
+    fg2: #d3c4b4;
+    fg3: #4f4539;
 
-    active: #8dcdff;
+    accent: #f4bd6f;
+    accent-fg: #452b00;
+    accent-alt: #624000;
+
+    secondary: #ddc2a1;
+    tertiary: #b8cea1;
+
+    active: #f4bd6f;
+    active-fg: #452b00;
     urgent: #ffb4ab;
+    urgent-fg: #690005;
+    warning: #93000a;
+    success: #b8cea1;
+    info: #7f5610;
+
+    hover-bg: #2f2921;
+    hover-fg: #ede0d4;
+    selected-bg: #624000;
+    selected-fg: #ffddb3;
+    disabled-bg: #120d07;
+    disabled-fg: #4f4539;
+
+    border: #9c8f80;
+    border-focus: #f4bd6f;
+    border-active: #ddc2a1;
+    border-urgent: #ffb4ab;
+
+    highlight: #b8cea1;
+    shadow: #000000;
+    selection-outline: #f4bd6f;
 }
+

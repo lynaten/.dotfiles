@@ -45,7 +45,7 @@ map("v", "<C-c>", "y", { desc = "Copy selection" }) -- Visual mode copy
 map("n", "<C-c>", "yy", { desc = "Copy line" })     -- Normal mode copy line
 
 -- Paste
-map("i", "<C-v>", "<C-r>+", { desc = "Paste from clipboard" })
+map("i", "<C-v>", "<Esc>pgi", { desc = "Paste and return to insert mode" })
 map("v", "<C-v>", '"_dP', { desc = "Paste over selection" })
 map("n", "<C-v>", "p", { desc = "Paste after cursor" })
 

@@ -15,6 +15,7 @@ bluez
 bluez-utils
 brightnessctl
 cheese
+cuda
 discord
 docker
 docker-compose
@@ -22,11 +23,13 @@ dosfstools
 efibootmgr
 fastfetch
 fd
+feh
 ffmpegthumbnailer
 firefox
 flatpak
 fuse2
 fzf
+ghostscript
 git
 github-cli
 gnome-keyring
@@ -34,7 +37,6 @@ gnome-themes-extra
 grim
 grub
 gst-plugin-pipewire
-gtk-engine-murrine
 gwenview
 hdf5
 htop
@@ -71,6 +73,7 @@ nvidia-dkms
 nvidia-prime
 nvidia-utils
 nwg-look
+obs-studio
 opencv
 openmpi
 os-prober
@@ -117,6 +120,7 @@ virtualbox-guest-iso
 virtualbox-host-dkms
 virtualbox-host-modules-lts
 vlc
+vnstat
 vtk
 vulkan-intel
 vulkan-nouveau
@@ -140,6 +144,7 @@ xf86-video-nouveau
 xorg-server
 xorg-xev
 xorg-xinit
+yt-dlp
 zip
 zram-generator
 zsh
@@ -158,9 +163,13 @@ aylurs-gtk-shell-git-debug
 ckbcomp
 electron21-bin
 electron21-bin-debug
+eww-git
+eww-git-debug
 git-credential-oauth
 git-credential-oauth-debug
 grub-customizer-debug
+gtk2
+gtk-engine-murrine
 libastal-4-git
 libastal-4-git-debug
 libastal-apps-git
@@ -204,6 +213,8 @@ libglibutil-debug
 matugen-bin
 matugen-bin-debug
 minecraft-launcher-debug
+mpvpaper
+mpvpaper-debug
 plasma-framework5
 python-gbinder-debug
 python-pywal16
@@ -216,7 +227,8 @@ teams
 teams-debug
 ttf-ms-fonts
 ttf-radio-canada
-virtualbox-ext-oracle
+uxplay
+uxplay-debug
 wl-tray-bridge-git
 wl-tray-bridge-git-debug
 yay

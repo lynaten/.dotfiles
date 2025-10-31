@@ -165,7 +165,7 @@ nmcli
     -> Check network status using NetworkManager
 nmcli device wifi list
     -> List available Wi-Fi networks
-nmcli device wifi connect password
+nmcli device wifi connect <SSID> password <password>
     -> Connect to a Wi-Fi network
 sudo systemctl restart NetworkManager
     -> Restart NetworkManager
@@ -194,6 +194,9 @@ nmcli connection delete <SSID>
     -> delete connection
 nmcli device status
     -> show status (have uuid)
+
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 
 
 SYSTEM MONITORING:
@@ -369,3 +372,19 @@ trust <MAC_ADDR>
 connect <MAC_ADDR>
 exit
 bluetoothctl devices
+
+YOUTUBE
+yt-dlp -o "~/Videos/Wallpaper/%(title)s.%(ext)s" ''
+
+
+https://youtu.be/NabGs5pXyc4?si=jVI0OCJUStrWlM3q
+
+sleep 3 && mpvpaper -o "--hwdec=auto" eDP-1 ~/Videos/Wallpaper/
+mpvpaper -o "--vo=gpu-next --gpu-api=vulkan --hwdec=auto" eDP-1 ~/Videos/Wallpaper/
+
+mpvpaper -o "--hwdec=nvdec-copy --no-config --loop" eDP-1 ~/Videos/Wallpaper/
+mpvpaper -o "--hwdec=nvdec-copy --no-config --loop no-audio" eDP-1 ~/Videos/Wallpaper/
+
+
+pkill -SIGUSR2 waybar
+
