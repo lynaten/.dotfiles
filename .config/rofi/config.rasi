@@ -1,175 +1,126 @@
-@import "colors.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
 /* ROUNDED THEME FOR ROFI */
-/* Author: Newman Sanchez (https://github.com/newmanls) */
 
 * {
-    font:                        "Roboto 12";
-    background-color:            transparent;
-    text-color:                  @fg0;
-    margin:                      0px;
-    padding:                     0px;
-    spacing:                     0px;
-
-    /* Colors defined from the dump theme */
-    normal-foreground:           @fg0;
-    normal-background:           @bg0;
-    active-background:           @active;
-    active-foreground:           @fg0;
-    urgent-background:           @urgent;
-    urgent-foreground:           @fg0;
-    alternate-normal-background: @bg3;
-    alternate-normal-foreground: @fg0;
-    alternate-active-background: @active;
-    alternate-active-foreground: @bg3;
-    alternate-urgent-background: @urgent;
-    alternate-urgent-foreground: @fg0;
-    selected-normal-background:  @bg3;
-    selected-normal-foreground:  @bg0;
-    selected-active-background:  @active;
-    selected-active-foreground:  @bg0;
-    selected-urgent-background:  @urgent;
-    selected-urgent-foreground:  @fg0;
-    separatorcolor:              @bg3;
+    font:               "Roboto 12";
+    background-color:   transparent;
+    text-color:         @foreground;
+    margin:             0px;
+    padding:            0px;
+    spacing:            0px;
+    /* do NOT redefine @normal-* or @selected-* here */
 }
 
 window {
-    location:                    north;
-    y-offset:                    calc(50% - 176px);
-    width:                       480;
-    border-radius:               24px;
-    background-color:            @bg2;
-    border-color:                @fg0;
+    location:           north;
+    y-offset:           calc(50% - 176px);
+    width:              480;
+    border-radius:      24px;
+    background-color:   @background;
+    border-color:       @foreground;
+    border: 1px;
 }
 
-mainbox {
-    padding:                     12px;
-}
+mainbox { padding: 12px; }
 
 inputbar {
-    background-color:            @bg1;
-    border-color:                @bg3;
-    border:                      2px;
-    border-radius:               8px;
-    padding:                     8px 16px;
-    spacing:                     8px;
-    children:                    [ prompt, entry ];
+    background-color:   @normal-background;
+    border-color:       @border-color;
+    border:             2px;
+    border-radius:      8px;
+    padding:            8px 16px;
+    spacing:            8px;
+    children:           [ prompt, entry ];
 }
 
-prompt {
-    text-color:                  @fg2;
-}
+prompt { text-color: @foreground; }
 
 entry {
-    placeholder:                 "Search";
-    placeholder-color:           @fg3;
-    text-color:                  @fg0;
+    placeholder:        "Search";
+    placeholder-color:  @foreground;
+    text-color:         @foreground;
 }
 
 message {
-    margin:                      12px 0 0;
-    border-radius:               8px;
-    border-color:                @bg2;
-    background-color:            @bg2;
+    margin:             12px 0 0;
+    border-radius:      8px;
+    border-color:       @border-color;
+    background-color:   @normal-background;
 }
 
-textbox {
-    padding:                     8px 24px;
-}
+textbox { padding: 8px 24px; }
 
 listview {
-    background-color:            transparent;
-    margin:                      12px 0 0;
-    lines:                       8;
-    columns:                     1;
-    fixed-height:                false;
+    background-color:   transparent;
+    margin:             12px 0 0;
+    lines:              8;
+    columns:            1;
+    fixed-height:       false;
 }
 
 element {
-    padding:                     8px 16px;
-    spacing:                     8px;
-    border-radius:               8px;
-    background-color:            @bg1;
-    text-color:                  @fg0;
+    padding:            8px 16px;
+    spacing:            8px;
+    border-radius:      8px;
+    background-color:   @normal-background;
+    text-color:         @normal-foreground;
 }
 
 element normal active {
-    background-color:            @bg1;
-    text-color:                  @bg3;
-}
-
-element alternate active {
-    background-color:            @bg0;
-    text-color:                  @bg2;
-}
-
-element selected normal, element selected active {
-    background-color:            @bg3;
-    text-color:                  @fg2;
-}
-
-element normal normal {
-    background-color:            @bg0;
-    text-color:                  @fg0;
+    background-color:   @active-background;
+    text-color:         @active-foreground;
 }
 
 element normal urgent {
-    background-color:            @bg0;
-    text-color:                  @fg0;
+    background-color:   @urgent-background;
+    text-color:         @urgent-foreground;
+}
+
+element selected normal {
+    background-color:   @selected-normal-background;
+    text-color:         @selected-normal-foreground;
+}
+
+element selected active {
+    background-color:   @selected-active-background;
+    text-color:         @selected-active-foreground;
 }
 
 element selected urgent {
-    background-color:            @bg0;
-    text-color:                  @fg1;
+    background-color:   @selected-urgent-background;
+    text-color:         @selected-urgent-foreground;
 }
 
 element alternate normal {
-    background-color:            @bg1;
-    text-color:                  @fg1;
+    background-color:   @alternate-normal-background;
+    text-color:         @alternate-normal-foreground;
+}
+
+element alternate active {
+    background-color:   @alternate-active-background;
+    text-color:         @alternate-active-foreground;
 }
 
 element alternate urgent {
-    background-color:            @urgent;
-    text-color:                  @fg0;
+    background-color:   @alternate-urgent-background;
+    text-color:         @alternate-urgent-foreground;
 }
 
-element-icon {
-    size:                        1em;
-    vertical-align:              0.5;
-}
+element-icon  { size: 1em; vertical-align: 0.5; }
+element-text  { text-color: inherit; }
 
-element-text {
-    text-color:                  inherit;
-}
+listview  { border-color: @border-color; border: 2px dash 0 0; }
+scrollbar { handle-color: @foreground; }
+sidebar   { border-color: @border-color; border: 2px dash 0 0; }
 
-listview {
-    border-color:                @separatorcolor;
-    border:                      2px dash 0px 0px;
-}
+button            { text-color: @normal-foreground; }
+button selected   { background-color: @selected-normal-background; text-color: @selected-normal-foreground; }
 
-scrollbar {
-    handle-color:                @fg0;
-}
-
-sidebar {
-    border-color:                @separatorcolor;
-    border:                      2px dash 0px 0px;
-}
-
-button {
-    text-color:                  @fg0;
-}
-
-button selected {
-    background-color:            @bg3;
-    text-color:                  @fg0;
-}
-
-case-indicator {
-    text-color:                  @fg0;
-}
+case-indicator { text-color: @normal-foreground; }
 
 overlay {
-    background-color:            @fg0;
-    foreground-color:            @bg0;
-    text-color:                  @bg0;
+    background-color:   @foreground;
+    foreground-color:   @background;
+    text-color:         @background;
 }

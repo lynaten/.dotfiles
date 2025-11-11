@@ -1,9 +1,9 @@
-@import "colors.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
     font:                        "Roboto 12";
     background-color:            transparent;
-    text-color:                  @fg0;
+    text-color:                  @normal-foreground;
     margin:                      0;
     padding:                     0;
     spacing:                     0;
@@ -13,28 +13,30 @@ element-icon, element-text, scrollbar {
     cursor:                      pointer;
 }
 
-window {
+#window {
     location:                    center;
     width:                       1200px;
-    height:                      956px;
+    height:                      80%;
     y-offset:                    -4px;
-    background-color:            @bg2;
+    background-color:            @normal-background;
     border-radius:               8px;
+    border: 1px;
+    border-color: @active-foreground;
 }
 
-mainbox {
+#mainbox {
     padding:                     24px;
     spacing:                     24px;
 }
 
-inputbar {
+#inputbar {
     padding:                     8px;
     spacing:                     4px;
     children:                    [ icon-search, entry ];
     border:                      0 0 2px 0 solid;
-    border-color:                @fg0;
+    border-color:                @normal-foreground;
     border-radius:               2px;
-    background-color:            @bg0;
+    background-color:            @normal-background;
 }
 
 icon-search, entry, element-icon, element-text {
@@ -50,59 +52,64 @@ icon-search {
 entry {
     font:                        "Roboto 12";
     placeholder:                 "Type here to search";
-    placeholder-color:           @fg1;
+    placeholder-color:           @normal-foreground;
 }
 
-textbox {
+#textbox {
     padding:                     4px 8px;
-    background-color:            @bg2;
+    background-color:            @alternate-normal-background;
 }
 
-listview {
+#listview {
     columns:                     4;
     spacing:                     8px;
     fixed-height:                false;
     fixed-columns:               true;
 }
 
-element {
+#element {
     orientation:                 vertical;
     spacing:                     2px;
     padding:                     2px;
     border-radius:               4px;
 }
 
-element normal urgent {
-    text-color:                  @urgent;
+#element.normal.urgent {
+    background-color:            @urgent-background;
+    text-color:                  @urgent-foreground;
 }
 
-element normal active {
-    text-color:                  @active;
+#element.normal.active {
+    background-color:            @active-background;
+    text-color:                  @active-foreground;
 }
 
-element alternate active {
-    text-color:                  @active;
+#element.alternate.active {
+    background-color:            @alternate-active-background;
+    text-color:                  @alternate-active-foreground;
 }
 
-element selected active {
-    text-color:                  @fg1;
+#element.selected.active {
+    background-color:            @selected-active-background;
+    text-color:                  @selected-active-foreground;
 }
 
-element selected {
-    background-color: @bg3;
-    text-color: @fg1;
+#element.selected {
+    background-color:            @selected-normal-background;
+    text-color:                  @selected-normal-foreground;
 }
 
-element selected urgent {
-    background-color:            @urgent;
+#element.selected.urgent {
+    background-color:            @selected-urgent-background;
+    text-color:                  @selected-urgent-foreground;
 }
 
-element-icon {
+#element-icon {
     size:                        240;
     horizontal-align:            0.5;
 }
 
-element-text {
+#element-text {
     text-color:                  inherit;
     horizontal-align:            0.5;
 }
