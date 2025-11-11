@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PLAYLIST_URL="https://youtube.com/playlist?list=PLIrjWUSM50JMxyhWeYhos4ObVnU12ZcCb&si=YGazJjVA5fpSfr-V"
+OUTPUT_TEMPLATE="~/Videos/Wallpaper/%(title)s.%(ext)s"
+ARCHIVE_FILE="$HOME/.cache/yt-dlp/wallpaper_playlist.txt"
+
+mkdir -p "$HOME/Videos/Wallpaper" "$HOME/.cache/yt-dlp"
+
+# Download every video in the playlist, but skip ones already recorded in the archive
+yt-dlp -o "$OUTPUT_TEMPLATE" \
+  --download-archive "$ARCHIVE_FILE" \
+  --no-overwrites \
+  --yes-playlist \
+  "$PLAYLIST_URL"
+

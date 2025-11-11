@@ -15,8 +15,8 @@ TEMP_IMAGE="$HOME/tmp/pywal_temp_image.png"
 
 notify-send "🎨 Changing Theme" "Applying new wallpaper and updating colors..."
 pkill -9 spotify
-
-Create blurred temp image for Pywal color extraction
+pkill -f mpvpaper || true
+# Create blurred temp image for Pywal color extraction
 # magick "$IMAGEFULL" \
 #     \( -size "75x75" xc:black -alpha set -channel Alpha -evaluate Set 30% \) \
 #     -gravity Center -composite \

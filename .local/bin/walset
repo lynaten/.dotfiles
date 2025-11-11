@@ -15,16 +15,10 @@ IFS=$'\n'
 SELECTED_WALL=$(for a in *.jpg *.png; do echo -en "$a\0icon\x1f$a\n" ; done | rofi -dmenu -p "" -show-icons -theme "$HOME/.config/rofi/wallpaper-selection.rasi")
 
 
-# /usr/share/sddm/themes/Andromeda/assets/bg.jpg
-#
-#
-# If not empty, pass to walset-backend
 if [ -n "$SELECTED_WALL" ]; then
     walset-backend "$SELECTED_WALL"
     FULL_PATH="$WALL_DIR/$SELECTED_WALL"
-    # This creates a symbolic link (a file that points to another file)
     ln -sf "$FULL_PATH" ~/Pictures/Wallpaper/.current_wallpaper
-    cp "$FULL_PATH" /usr/share/sddm/themes/Andromeda/assets/bg.jpg
 fi
 
 # Go back to where you came from

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Video wallpaper chooser using rofi + mpvpaper
+
+VID_DIR="$HOME/Videos/Wallpaper"
+CWD="$(pwd)"
+
+cd "$VID_DIR" || exit
+
+# Handle spaces safely
+IFS=$'\n'
+
+# Let user pick a video (mp4, mkv, webm)
+
+for v in *.mp4 *.mkv *.webm; do
+    thumb="${v%.*}.jpg"
+    if [ ! -f "$thumb" ]; then
+        ffmpegthumbnailer -i "$v" -o "$thumb" -s 480 -q 8
+    fi
+done
+
+# Show rofi menu with thumbnails as icons
+SELECTED_VIDEO=$(
+    for v in *.mp4 *.mkv *.webm; do
+        thumb="${v%.*}.jpg"
+        echo -en "$v\0icon\x1f$VID_DIR/$thumb\n"
+    done | rofi -dmenu -p "" -show-icons -theme "$HOME/.config/rofi/wallpaper-selection.rasi"
+)
+
+if [ -n "$SELECTED_VIDEO" ]; then
+    # Kill any existing mpvpaper instances
+    pkill -f mpvpaper || true
+
+    # Launch mpvpaper with chosen video
+    mpvpaper -o "--hwdec=nvdec-copy --no-config" eDP-1 "$VID_DIR/$SELECTED_VIDEO" &
+fi
+
+cd "$CWD" || exit
