@@ -1,5 +1,7 @@
 IMPORTANT SHELL COMMANDS
 
+chmod +x install_dotfiles.sh 
+
 GIT:
 git config 
     -> Sets your name and email for commits.
