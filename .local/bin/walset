@@ -12,7 +12,7 @@ IFS=$'\n'
 
 # Grab the user-selected wallpaper
 # MODIFICATION: Added -show-icons
-SELECTED_WALL=$(for a in *.jpg *.png; do echo -en "$a\0icon\x1f$a\n" ; done | rofi -dmenu -p "" -show-icons -theme "/home/lynaten/.config/rofi/wallpaper-selection.rasi")
+SELECTED_WALL=$(for a in *.jpg *.png; do echo -en "$a\0icon\x1f$a\n" ; done | rofi -dmenu -p "" -show-icons -theme "$HOME/.config/rofi/wallpaper-selection.rasi")
 
 
 # /usr/share/sddm/themes/Andromeda/assets/bg.jpg
