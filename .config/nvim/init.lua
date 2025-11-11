@@ -25,24 +25,6 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
-require("neo-tree").setup({
-    filesystem = {
-      filtered_items = {
-        visible = true,      -- Show hidden files *in the tree*
-        hide_dotfiles = false,
-        hide_gitignored = false,
-      },
-    follow_current_file = {
-        enabled = true,        -- This will automatically focus the file in the tree
-        leave_dirs_open = true -- Keeps parent dirs open
-      },
-    },
-    window = {
-    width = 25,
-  },
-})
-
-
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")

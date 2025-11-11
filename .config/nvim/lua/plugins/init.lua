@@ -16,15 +16,15 @@ return {
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+  	"nvim-treesitter/nvim-treesitter",
+  	opts = {
+  		ensure_installed = {
+  			"vim", "lua", "vimdoc",
+       "html", "css"
+  		},
+  	},
+  },
   --
   { "mg979/vim-visual-multi" },
   { "m-pilia/vim-smarthome" },
@@ -51,17 +51,44 @@ return {
     end,
   },
 
-  -- File Explorer
+  -- -- -- File Explorer
+
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
+    config = function()
+      require("nvim-tree").setup({
+        view = {
+          adaptive_size = true,
+          side = "left",
+        },
+        renderer = {
+          group_empty = true, -- compact "folder1/folder2/folder3"
+        },
+        filters = {
+          dotfiles = false,   -- show hidden files (set to true to hide)
+        },
+        actions = {
+          open_file = {
+            quit_on_open = false,
+          },
+        },
+        update_focused_file = {
+          enable = true,
+          update_root = false, -- set to true if you want cwd to follow too
+          ignore_list = {},
+        },
+      })
+
+      -- Keymap to toggle the tree
+    end,
   },
+
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   enabled = false,
+  -- },
   {
     "3rd/image.nvim",
     dependencies = {
@@ -124,22 +151,28 @@ return {
 
     null_ls.setup({
       sources = {
-        -- Python
+        -- 🐍 Python
         null_ls.builtins.formatting.black,
         null_ls.builtins.diagnostics.flake8,
 
-        -- Web stack
+        -- 🌐 Web stack
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.formatting.phpcsfixer,
         null_ls.builtins.diagnostics.phpcs,
         null_ls.builtins.diagnostics.stylelint,
+
+        -- ☕ Java
+        null_ls.builtins.formatting.google_java_format, -- Mason provides this via google-java-format
       },
     })
 
-    -- Optional: format on save for Python files
+    -- 🔧 Format on save
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*.py",
+      pattern = {
+        "*.py",
+        "*.java", -- added Java
+      },
       callback = function()
         vim.lsp.buf.format({ async = false })
       end,

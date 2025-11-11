@@ -22,6 +22,11 @@ docker-compose
 dosfstools
 efibootmgr
 fastfetch
+fcitx5
+fcitx5-configtool
+fcitx5-gtk
+fcitx5-mozc
+fcitx5-qt
 fd
 feh
 ffmpegthumbnailer
@@ -32,6 +37,7 @@ fzf
 ghostscript
 git
 github-cli
+glm
 gnome-keyring
 gnome-themes-extra
 grim
@@ -61,6 +67,7 @@ linux-firmware
 linux-headers
 linux-lts
 linux-lts-headers
+maven
 mesa-utils
 mpv
 mtools
@@ -170,6 +177,8 @@ git-credential-oauth-debug
 grub-customizer-debug
 gtk2
 gtk-engine-murrine
+hyprland-qtutils
+kdoctools5
 libastal-4-git
 libastal-4-git-debug
 libastal-apps-git
@@ -216,10 +225,12 @@ minecraft-launcher-debug
 mpvpaper
 mpvpaper-debug
 plasma-framework5
+plasma-framework5-debug
 python-gbinder-debug
 python-pywal16
 python-pywalfox
 pywal-spicetify
+qt5-doc
 spicetify-cli
 spicetify-cli-debug
 spotify

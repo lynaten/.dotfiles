@@ -13,8 +13,8 @@ map("i", "jk", "<ESC>")
 map({ "n", "i", "v" }, "<C-s>", "<cmd>w!<cr>", { desc = "Save file" })
 map({ "n", "i", "v" }, "<C-q>", "<cmd>q!<cr>", { desc = "Quit" })
 
--- Neo-tree toggle
-map({ "n", "i" }, "<C-b>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neo-tree" })
+-- Nvim-tree toggle
+map({ "n", "i" }, "<C-b>", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle Nvim-tree" })
 
 -- Move lines (Alt + j/k)
 map("n", "<A-j>", ":m+<CR>==", opts)
