@@ -8,7 +8,7 @@ README="$DOTFILES/README.md"
 
 # Collect package lists
 PACMAN=$(comm -23 <(pacman -Qeq | sort) <(pacman -Qmq | sort))
-YAY=$(pacman -Qmq | sort)
+YAY=$(yay -Qem | awk '{print $1}' | grep -Ev -- '(-debug$|^yay$)' | sort)
 FLATPAK=$(flatpak list --app --columns=application | sort)
 
 # Replace sections inside README.md
