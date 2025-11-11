@@ -1,4 +1,3 @@
-@import url("/home/lynaten/.cache/wal/colors-waybar.css");
 @import url("colors.css");
 
 * {
@@ -10,19 +9,21 @@
 
 window#waybar {
     background-color: transparent;
-    color: @background;
+    color: @on_background;
     margin: 0 0 0 0;
 }
 
-#workspaces button {
-    color: @color4;
-}
-
+/* Workspaces */
 #workspaces {
     background-color: @background;
     padding: 0 5px 0 0;
 }
 
+#workspaces button {
+    color: @primary;
+}
+
+/* Module alignment */
 .modules-left {
     margin-left: 12px;
 }
@@ -31,47 +32,54 @@ window#waybar {
     margin-right: 12px;
 }
 
+/* Common module style */
 #battery,
 #pulseaudio,
 #backlight,
 #custom-weather {
-    color: @color5; /* color5 */
-    background-color: @background; /* background */
+    color: @tertiary;
+    background-color: @background;
     margin: 0 15px 0 0px;
     padding: 0 15px 0 15px; /* top, right, bottom, left */
 }
 
+/* Network */
 #network {
-    color: @color2; /* color2 */
-    background-color: @background; /* background */
+    color: @secondary;
+    background-color: @background;
     margin: 0 0px 0 0px;
-    padding: 0 15px 0 15px; /* top, right, bottom, left */
+    padding: 0 15px 0 15px;
 }
 
+/* Clock */
 #clock {
-    color: @color2; /* color3 */
-    background-color: @background; /* background */
+    color: @primary;
+    background-color: @background;
     margin: 0 15px 0 0;
     padding: 0 15px 0 15px;
 }
 
+/* Pulseaudio */
 #pulseaudio {
-    color: @color4; /* color5 */
+    color: @tertiary;
 }
 
+/* Backlight */
 #backlight {
-    color: @color4; /* color5 */
+    color: @tertiary;
 }
 
+/* Weather */
 #custom-weather {
-    color: @color5; /* color2 */
-    background-color: @background; /* background */
-    padding: 0 15px 0 15px; /* top, right, bottom, left */
+    color: @tertiary;
+    background-color: @background;
+    padding: 0 15px 0 15px;
 }
 
+/* Media */
 #custom-media {
-    color: @color4; /* color2 */
-    background-color: @background; /* background */
+    color: @primary;
+    background-color: @background;
     margin: 0 0px 0 15px;
-    padding: 0 15px 0 15px; /* top, right, bottom, left */
+    padding: 0 15px 0 15px;
 }
