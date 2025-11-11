@@ -1,3 +1,4 @@
+@import url("../../.cache/wal/colors-waybar.css");
 @import url("colors.css");
 
 * {
@@ -9,21 +10,19 @@
 
 window#waybar {
     background-color: transparent;
-    color: @on_background;
+    color: @background;
     margin: 0 0 0 0;
 }
 
-/* Workspaces */
+#workspaces button {
+    color: @color4;
+}
+
 #workspaces {
     background-color: @background;
     padding: 0 5px 0 0;
 }
 
-#workspaces button {
-    color: @primary;
-}
-
-/* Module alignment */
 .modules-left {
     margin-left: 12px;
 }
@@ -32,54 +31,47 @@ window#waybar {
     margin-right: 12px;
 }
 
-/* Common module style */
 #battery,
 #pulseaudio,
 #backlight,
 #custom-weather {
-    color: @tertiary;
-    background-color: @background;
+    color: @color5; /* color5 */
+    background-color: @background; /* background */
     margin: 0 15px 0 0px;
     padding: 0 15px 0 15px; /* top, right, bottom, left */
 }
 
-/* Network */
 #network {
-    color: @secondary;
-    background-color: @background;
+    color: @color2; /* color2 */
+    background-color: @background; /* background */
     margin: 0 0px 0 0px;
-    padding: 0 15px 0 15px;
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
 }
 
-/* Clock */
 #clock {
-    color: @primary;
-    background-color: @background;
+    color: @color2; /* color3 */
+    background-color: @background; /* background */
     margin: 0 15px 0 0;
     padding: 0 15px 0 15px;
 }
 
-/* Pulseaudio */
 #pulseaudio {
-    color: @tertiary;
+    color: @color4; /* color5 */
 }
 
-/* Backlight */
 #backlight {
-    color: @tertiary;
+    color: @color4; /* color5 */
 }
 
-/* Weather */
 #custom-weather {
-    color: @tertiary;
-    background-color: @background;
-    padding: 0 15px 0 15px;
+    color: @color5; /* color2 */
+    background-color: @background; /* background */
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
 }
 
-/* Media */
 #custom-media {
-    color: @primary;
-    background-color: @background;
+    color: @color4; /* color2 */
+    background-color: @background; /* background */
     margin: 0 0px 0 15px;
-    padding: 0 15px 0 15px;
+    padding: 0 15px 0 15px; /* top, right, bottom, left */
 }
