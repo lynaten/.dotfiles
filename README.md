@@ -161,6 +161,7 @@ zsh-syntax-highlighting
 ### Yay (AUR) packages
 ```
 ags-hyprpanel-git
+ani-cli
 anki-bin
 ckbcomp
 eww-git

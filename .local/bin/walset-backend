@@ -13,17 +13,8 @@ IMAGE="$1"
 IMAGEFULL="$WALL_DIR/$IMAGE"
 TEMP_IMAGE="$HOME/tmp/pywal_temp_image.png"
 
-notify-send "🎨 Changing Theme" "Applying new wallpaper and updating colors..."
 pkill -9 spotify
 pkill -f mpvpaper || true
-# Create blurred temp image for Pywal color extraction
-# magick "$IMAGEFULL" \
-#     \( -size "75x75" xc:black -alpha set -channel Alpha -evaluate Set 30% \) \
-#     -gravity Center -composite \
-#     \( -size "50x50" xc:black -alpha set -channel Alpha -evaluate Set 60% \) \
-#     -gravity Center -composite \
-#     \( -size "25x25" xc:black -alpha set -channel Alpha -evaluate Set 90% \) \
-#     -gravity Center -composite "$TEMP_IMAGE"
 
 wal -i "$IMAGEFULL" -n -s -t -e
 matugen image "$IMAGEFULL"
@@ -31,6 +22,9 @@ matugen image "$IMAGEFULL"
 swww img "$IMAGEFULL" --transition-type fade --transition-duration 1
 
 pywal-spicetify SharkBlue
+
+pkill -f swaync || true
+swaync & disown
 
 sleep 0.5
 

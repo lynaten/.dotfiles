@@ -19,7 +19,7 @@ element-icon, element-text, scrollbar {
     height:                      80%;
     y-offset:                    -4px;
     background-color:            @normal-background;
-    border-radius:               24px;
+    border-radius:               16px;
     border: 1px;
     border-color: @active-foreground;
 }

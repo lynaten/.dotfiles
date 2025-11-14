@@ -390,3 +390,4 @@ mpvpaper -o "--hwdec=nvdec-copy --no-config --loop no-audio" eDP-1 ~/Videos/Wall
 
 pkill -SIGUSR2 waybar
 
+ani-cli --continue --rofi -q 360p

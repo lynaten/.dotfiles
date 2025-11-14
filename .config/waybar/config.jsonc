@@ -64,6 +64,7 @@
     "format-ethernet": "󰈀   {ipaddr}/{cidr}",
     "format-disconnected": "󰤭   disconnected",
     "max-length": 50,
+    "on-click": "swaync-client -t",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
   },
 
