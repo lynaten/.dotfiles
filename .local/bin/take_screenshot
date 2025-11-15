@@ -6,10 +6,11 @@ mkdir -p "$OUTDIR"
 ACTIVE_OPACITY=$(hyprctl getoption decoration:active_opacity -j | jq -r '.float')
 INACTIVE_OPACITY=$(hyprctl getoption decoration:inactive_opacity -j | jq -r '.float')
 
+hyprctl keyword animations:enabled 0
 hyprctl keyword decoration:active_opacity 1
 hyprctl keyword decoration:inactive_opacity 1
+hyprctl keyword animations:enabled 1
 
-sleep .075
 
 hyprshot -z -m region -o "$OUTDIR"
 RET=$?
