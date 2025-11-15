@@ -49,6 +49,7 @@ htop
 hyprland
 hyprlock
 hyprpaper
+hyprpicker
 hyprshot
 intel-media-driver
 iwd
@@ -112,6 +113,7 @@ sof-firmware
 steam
 stow
 stylua
+swayimg
 swaync
 swww
 thunar
@@ -166,6 +168,7 @@ anki-bin
 ckbcomp
 eww-git
 git-credential-oauth
+grimblast-git
 gtk-engine-murrine
 matugen-bin
 mpvpaper

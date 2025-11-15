@@ -1,0 +1,22 @@
+#!/bin/bash
+
+OUTDIR="$HOME/Pictures/Screenshots"
+mkdir -p "$OUTDIR"
+
+ACTIVE_OPACITY=$(hyprctl getoption decoration:active_opacity -j | jq -r '.float')
+INACTIVE_OPACITY=$(hyprctl getoption decoration:inactive_opacity -j | jq -r '.float')
+
+hyprctl keyword decoration:active_opacity 1
+hyprctl keyword decoration:inactive_opacity 1
+
+sleep .075
+
+hyprshot -z -m region -o "$OUTDIR"
+RET=$?
+
+hyprctl keyword decoration:active_opacity "$ACTIVE_OPACITY"
+hyprctl keyword decoration:inactive_opacity "$INACTIVE_OPACITY"
+
+if [ $RET -ne 0 ] || [ ! -f "$FILE" ]; then
+  exit 0
+fi
