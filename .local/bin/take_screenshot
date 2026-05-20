@@ -5,19 +5,21 @@ mkdir -p "$OUTDIR"
 
 ACTIVE_OPACITY=$(hyprctl getoption decoration:active_opacity -j | jq -r '.float')
 INACTIVE_OPACITY=$(hyprctl getoption decoration:inactive_opacity -j | jq -r '.float')
+BORDER_SIZE=$(hyprctl getoption general:border_size -j | jq -r '.int')
 
+# Disable effects
 hyprctl keyword animations:enabled 0
 hyprctl keyword decoration:active_opacity 1
 hyprctl keyword decoration:inactive_opacity 1
-hyprctl keyword animations:enabled 1
-
+hyprctl keyword general:border_size 0
 
 hyprshot -z -m region -o "$OUTDIR"
 RET=$?
 
+# Restore settings
 hyprctl keyword decoration:active_opacity "$ACTIVE_OPACITY"
 hyprctl keyword decoration:inactive_opacity "$INACTIVE_OPACITY"
+hyprctl keyword general:border_size "$BORDER_SIZE"
+hyprctl keyword animations:enabled 1
 
-if [ $RET -ne 0 ] || [ ! -f "$FILE" ]; then
-  exit 0
-fi
+exit 0

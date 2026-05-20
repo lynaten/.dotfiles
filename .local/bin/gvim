@@ -22,6 +22,6 @@ repo=$(echo "$repos" | fzf \
 
 # If something was selected, open it in Neovim with Neo-tree
 if [ -n "$repo" ]; then
-    nvim "$repo" -c "Neotree toggle"
+    nvim "$repo"
 fi
 

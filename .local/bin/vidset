@@ -4,34 +4,49 @@
 VID_DIR="$HOME/Videos/Wallpaper"
 CWD="$(pwd)"
 
-cd "$VID_DIR" || exit
+cd "$VID_DIR" || exit 1
 
-# Handle spaces safely
 IFS=$'\n'
 
-# Let user pick a video (mp4, mkv, webm)
-
+# Generate thumbnails if missing (added -c for better center-cropping)
 for v in *.mp4 *.mkv *.webm; do
+    [ -e "$v" ] || continue
     thumb="${v%.*}.jpg"
     if [ ! -f "$thumb" ]; then
-        ffmpegthumbnailer -i "$v" -o "$thumb" -s 480 -q 8
+        ffmpegthumbnailer -i "$v" -o "$thumb" -s 480 -c -q 8
     fi
 done
 
 # Show rofi menu with thumbnails as icons
 SELECTED_VIDEO=$(
     for v in *.mp4 *.mkv *.webm; do
+        [ -e "$v" ] || continue
         thumb="${v%.*}.jpg"
         echo -en "$v\0icon\x1f$VID_DIR/$thumb\n"
     done | rofi -dmenu -p "" -show-icons -theme "$HOME/.config/rofi/wallpaper-selection.rasi"
 )
 
 if [ -n "$SELECTED_VIDEO" ]; then
-    # Kill any existing mpvpaper instances
-    pkill -f mpvpaper || true
+    SELECTED_JPG_FULL="$VID_DIR/${SELECTED_VIDEO%.*}.jpg"
 
-    # Launch mpvpaper with chosen video
-    mpvpaper -o "--hwdec=nvdec-copy --no-config" eDP-1 "$VID_DIR/$SELECTED_VIDEO" &
+    # Run your backend to generate the Pywal theme from the thumbnail
+    if [ -f "$SELECTED_JPG_FULL" ]; then
+        # This calls your freshly fixed walset-backend!
+        walset-backend "$SELECTED_JPG_FULL"
+        
+        # Symlink current wallpaper
+        ln -sf "$SELECTED_JPG_FULL" "$HOME/Pictures/Wallpaper/.current_wallpaper"
+        
+        # Ensure no ghost mpvpaper processes are fighting for the background
+        pkill -f mpvpaper || true
+        
+        # Start mpvpaper. 
+        # '*' applies it dynamically to all monitors.
+        # 'disown' ensures the video keeps playing after this script exits.
+        mpvpaper -o "--hwdec=nvdec-copy --no-config --loop" '*' "$VID_DIR/$SELECTED_VIDEO" & disown
+    else
+        notify-send "Wallpaper Error" "Could not apply thumbnail: $SELECTED_JPG_FULL"
+    fi
 fi
 
-cd "$CWD" || exit
+cd "$CWD" || exit 1

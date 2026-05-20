@@ -1,35 +1,121 @@
-
 #!/bin/bash
-# change_theme.sh
-# Usage: ./change_theme.sh <image_filename>
+# Usage:
+#   walset-backend filename.jpg
+#   walset-backend /full/path/to/file.jpg
 
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <path_to_image>"
+    echo "Usage: $0 <image_filename_or_full_path>"
     exit 1
 fi
 
 WALL_DIR="$HOME/Pictures/Wallpaper"
-IMAGE="$1"
-IMAGEFULL="$WALL_DIR/$IMAGE"
+INPUT="$1"
+
+case "$INPUT" in
+    /*) IMAGEFULL="$INPUT" ;;
+    *)  IMAGEFULL="$WALL_DIR/$INPUT" ;;
+esac
+
+if [ ! -f "$IMAGEFULL" ]; then
+    echo "Error: image not found: $IMAGEFULL" >&2
+    exit 1
+fi
+
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/walset"
+mkdir -p "$CACHE_DIR"
+
+BASENAME="$(basename "$IMAGEFULL")"
+NAME_NO_EXT="${BASENAME%.*}"
+EXT="${BASENAME##*.}"
+
+# full-res copy ONLY for hyprpaper
+WALL_COPY="$CACHE_DIR/${NAME_NO_EXT}_wallcopy.${EXT}"
+
+BASE_SMALL="$CACHE_DIR/${NAME_NO_EXT}_base_small.jpg"
+STACKED="$CACHE_DIR/${NAME_NO_EXT}_stacked_palette.jpg"
+
 TEMP_IMAGE="$HOME/tmp/pywal_temp_image.png"
 
-pkill -9 spotify
 pkill -f mpvpaper || true
 
-wal -i "$IMAGEFULL" -n -s -t -e
-matugen image "$IMAGEFULL"
+# make full-res copy immediately after IMAGEFULL is resolved
+cp -f -- "$IMAGEFULL" "$WALL_COPY" || exit 1
 
-swww img "$IMAGEFULL" --transition-type fade --transition-duration 1
+# Small processed image ONLY for palette extraction
+magick "$IMAGEFULL" \
+    -auto-orient \
+    -resize 512x512\> \
+    -alpha off \
+    -colorspace sRGB \
+    -strip \
+    "$BASE_SMALL" || exit 1
+
+APPEND_INPUTS=("$BASE_SMALL")
+
+# 1. Add Dark Variants (Shades)
+for LEVEL in 15 30 45 60 75; do
+    OUT="$CACHE_DIR/${NAME_NO_EXT}_dark${LEVEL}.jpg"
+    magick "$BASE_SMALL" \
+        -fill black -colorize "$LEVEL" \
+        -alpha off -colorspace sRGB -strip \
+        "$OUT" || exit 1
+    APPEND_INPUTS+=("$OUT")
+done
+
+# 2. Add Light Variants (Tints)
+for LEVEL in 15 30 45 60; do
+    OUT="$CACHE_DIR/${NAME_NO_EXT}_light${LEVEL}.jpg"
+    magick "$BASE_SMALL" \
+        -fill white -colorize "$LEVEL" \
+        -alpha off -colorspace sRGB -strip \
+        "$OUT" || exit 1
+    APPEND_INPUTS+=("$OUT")
+done
+
+# 3. Add a hyper-saturated variant
+OUT_SAT="$CACHE_DIR/${NAME_NO_EXT}_sat.jpg"
+magick "$BASE_SMALL" \
+    -modulate 100,200 \
+    -alpha off -colorspace sRGB -strip \
+    "$OUT_SAT" || exit 1
+APPEND_INPUTS+=("$OUT_SAT")
+
+# 4. INJECT NOISE: Mathematically forces thousands of micro-color variations
+OUT_NOISE="$CACHE_DIR/${NAME_NO_EXT}_noise.jpg"
+magick "$BASE_SMALL" \
+    +noise Gaussian \
+    -alpha off -colorspace sRGB -strip \
+    "$OUT_NOISE" || exit 1
+APPEND_INPUTS+=("$OUT_NOISE")
+
+# Stack all of them vertically
+magick "${APPEND_INPUTS[@]}" \
+    -append \
+    -alpha off \
+    -colorspace sRGB \
+    -strip \
+    "$STACKED" || exit 1
+
+# Palette/theme generation: tries colorthief first, falls back to noise-hacked imagemagick
+wal -i "$STACKED" -n -s -t -e --backend colorthief || wal -i "$STACKED" -n -s -t -e || exit 1
+matugen image "$STACKED"
+ln -sf "$WALL_COPY" "$HOME/.cache/wal/wal"
+
+# Actual wallpaper uses the FULL-RES COPY
+hyprctl hyprpaper preload "$WALL_COPY"
+hyprctl hyprpaper wallpaper ",$WALL_COPY"
+hyprctl hyprpaper unload unused
 
 pywal-spicetify SharkBlue
 
 pkill -f swaync || true
 swaync & disown
 
-sleep 0.5
-
-hyprctl dispatch togglespecialworkspace magic
+pkill -SIGUSR2 waybar
+pywalfox update || true
+pkill -USR1 kitty || true
+emacsclient -e "(ewal-load-colors)" || true
 
 rm -f "$TEMP_IMAGE"
 
-notify-send "✅ Theme Applied" "Wallpaper, colors, and Spotify magic pad ready!"
+notify-send "Theme Applied"

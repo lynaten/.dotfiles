@@ -17,13 +17,16 @@ return {
   -- { import = "nvchad.blink.lazyspec" },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-       "html", "css"
-  		},
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+      },
+    },
   },
   --
   { "mg979/vim-visual-multi" },
@@ -52,133 +55,125 @@ return {
   },
 
   -- -- -- File Explorer
-
+  -- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt#L1360
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
     config = function()
-      require("nvim-tree").setup({
+      require("nvim-tree").setup {
         view = {
-          adaptive_size = true,
           side = "left",
         },
-        renderer = {
-          group_empty = true, -- compact "folder1/folder2/folder3"
-        },
         filters = {
-          dotfiles = false,   -- show hidden files (set to true to hide)
+          dotfiles = false, -- show hidden files (set to true to hide)
+          git_ignored = false,
         },
-        actions = {
-          open_file = {
-            quit_on_open = false,
-          },
-        },
-        update_focused_file = {
-          enable = true,
-          update_root = false, -- set to true if you want cwd to follow too
-          ignore_list = {},
-        },
-      })
-
-      -- Keymap to toggle the tree
+      }
     end,
-  },
-
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   enabled = false,
-  -- },
-  {
-    "3rd/image.nvim",
-    dependencies = {
-      "luarocks/luarocks",
-    }
   },
 
   -- Markdown
   {
     "iamcco/markdown-preview.nvim",
     build = function()
-        vim.fn["mkdp#util#install"]()
+      vim.fn["mkdp#util#install"]()
     end,
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
   },
-
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
+    "meatballs/notebook.nvim",
+    ft = "ipynb",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup {
-        ensure_installed = { "clangd" },
-        handlers = {
-          function(server)
-            if server == "clangd" then
-              vim.lsp.config("clangd", {
-                cmd = { "clangd", "--background-index", "--clang-tidy" },
-                init_options = {
-                  fallbackFlags = { "-std=c++17" },
-                },
-                on_attach = function(_, bufnr)
-                  local opts = { noremap = true, silent = true, buffer = bufnr }
-                  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                  vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts)
-                  vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts)
-                  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                end,
-              })
-            else
-              vim.lsp.config(server, {})
-            end
-          end,
-        },
+      require("notebook").setup {
+        insert_blank_line = true,
+        show_index = true,
+        show_cell_type = true,
+        virtual_text_style = { fg = "lightblue", italic = true },
       }
     end,
   },
-
-
-{
-  "nvimtools/none-ls.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    local null_ls = require("null-ls")
-
-    null_ls.setup({
-      sources = {
-        -- 🐍 Python
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.diagnostics.flake8,
-
-        -- 🌐 Web stack
-        null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.formatting.phpcsfixer,
-        null_ls.builtins.diagnostics.phpcs,
-        null_ls.builtins.diagnostics.stylelint,
-
-        -- ☕ Java
-        null_ls.builtins.formatting.google_java_format, -- Mason provides this via google-java-format
-      },
-    })
-
-    -- 🔧 Format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = {
-        "*.py",
-        "*.java", -- added Java
-      },
-      callback = function()
-        vim.lsp.buf.format({ async = false })
-      end,
-    })
-  end,
-},
-
-
- }
+  {
+    "meatballs/magma-nvim",
+    build = ":UpdateRemotePlugins",
+    config = function()
+      vim.g.magma_automatically_open_output = true
+    end,
+  },
+  {
+    "Maduki-tech/nvim-plantuml",
+    ft = { "puml", "plantuml" }, -- load only for puml files
+    config = function()
+      require("plantuml").setup {
+        output_dir = "/tmp",
+        viewer = "xdg-open", -- IMPORTANT for Linux (not 'open')
+        auto_refresh = true,
+      }
+    end,
+  },
+  {
+    "3rd/image.nvim",
+    build = false,
+    config = function()
+      require("image").setup {
+        backend = "kitty", -- or "ueberzug" or "sixel"
+        processor = "magick_cli", -- or "magick_rock"
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            only_render_image_at_cursor_mode = "popup", -- or "inline"
+            floating_windows = false,
+            filetypes = { "markdown", "vimwiki" },
+          },
+          asciidoc = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            only_render_image_at_cursor_mode = "popup",
+            floating_windows = false,
+            filetypes = { "asciidoc", "adoc" },
+          },
+          neorg = {
+            enabled = true,
+            filetypes = { "norg" },
+          },
+          rst = {
+            enabled = true,
+          },
+          typst = {
+            enabled = true,
+            filetypes = { "typst" },
+          },
+          html = {
+            enabled = false,
+          },
+          css = {
+            enabled = false,
+          },
+        },
+        max_width = nil,
+        max_height = nil,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        scale_factor = 1.0,
+        window_overlap_clear_enabled = false,
+        window_overlap_clear_ft_ignore = {
+          "cmp_menu",
+          "cmp_docs",
+          "snacks_notif",
+          "scrollview",
+          "scrollview_sign",
+        },
+        editor_only_render_when_focused = false,
+        tmux_show_only_in_active_window = false,
+        hijack_file_patterns = nil,
+      }
+    end,
+  },
+}

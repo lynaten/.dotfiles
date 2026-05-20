@@ -1,40 +1,42 @@
--- Load NvChad defaults
-require("nvchad.configs.lspconfig").defaults()
-
--- Define servers you want to enable
 local servers = {
-  "html",
-  "cssls",
-  "jdtls",     -- Java
-  "gradle_ls", -- Gradle build files
-  "lemminx",   -- XML
-  "yamlls",    -- YAML
-}
+  html = {},
+  awk_ls = {},
+  bashls = {},
 
-vim.lsp.enable(servers)
-
--- Optional: extra configuration for jdtls (Java)
--- because it benefits from workspace-specific setup
-local lspconfig = require("lspconfig")
-
-lspconfig.jdtls.setup({
-  cmd = { "jdtls" },
-  root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git"),
-  on_attach = function(client, bufnr)
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  end,
-  settings = {
-    java = {
-      format = { enabled = false }, -- handled by null-ls (google-java-format)
-      signatureHelp = { enabled = true },
-      contentProvider = { preferred = "fernflower" },
+  -- TypeScript (REQUIRED by vue_ls)
+  ts_ls = {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
     },
   },
-})
 
+  -- Vue Language Server (modern Volar replacement)
+  vue_ls = {
+    filetypes = {
+      "vue",
+    },
+  },
 
--- read :h vim.lsp.config for changing options of lsp servers 
+  pyright = {
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          typeCheckingMode = "basic",
+        },
+      },
+    },
+  },
+}
+
+for name, opts in pairs(servers) do
+  vim.lsp.config(name, opts)
+  vim.lsp.enable(name)
+end
+
+-- if you dont want to call the enable method in the loop, just pass a table.
+-- vim.lsp.enable(vim.tbl_keys(servers))
+-- vim.lsp.enable({"pyright", "clangd"})

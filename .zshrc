@@ -113,3 +113,23 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+# Added by flyctl installer
+export FLYCTL_INSTALL="/home/lynaten/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/init-nvm.sh
+export PATH="$HOME/.cargo/bin:$PATH"
+export ANDROID_HOME=/opt/android-sdk
+export ANDROID_SDK_ROOT=/opt/android-sdk
+
+export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+
+export PATH=$PATH:~/go/bin
+export QT_SCALE_FACTOR=1.5
+alias con="nmcli connection up"
+alias itbvpn='sudo openvpn --config ~/Downloads/vpnitb-linux/config/itb-2022-linux.ovpn'
+alias itbroute='sudo ip route replace 10.50.0.0/16 dev tun0 && sudo ip route replace 10.5.0.0/16 dev tun0'
+alias sshgpu='ssh -i ~/.ssh/13523142 13523142@10.5.108.180'
+alias p='ping 1.1.1.1'
+font() { sudo setfont "ter-v${1}b"; }

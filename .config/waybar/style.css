@@ -4,7 +4,7 @@
     font-family: "Radio Canada Big", sans-serif;
     font-weight: bold;
     font-size: 13px;
-    border-radius: 100px;
+    border-radius: 4px;
 }
 
 window#waybar {
@@ -19,15 +19,15 @@ window#waybar {
 
 #workspaces {
     background-color: @background;
-    padding: 0 5px 0 0;
+    padding: 0 0 0 0;
 }
 
 .modules-left {
-    margin-left: 12px;
+    margin-left: 4px;
 }
 
 .modules-right {
-    margin-right: 12px;
+    margin-right: 4px;
 }
 
 #battery,
@@ -36,7 +36,7 @@ window#waybar {
 #custom-weather {
     color: @color5; /* color5 */
     background-color: @background; /* background */
-    margin: 0 15px 0 0px;
+    margin: 0 4px 0 0px;
     padding: 0 15px 0 15px; /* top, right, bottom, left */
 }
 
@@ -50,7 +50,7 @@ window#waybar {
 #clock {
     color: @color2; /* color3 */
     background-color: @background; /* background */
-    margin: 0 15px 0 0;
+    margin: 0 4px 0 0;
     padding: 0 15px 0 15px;
 }
 
@@ -71,6 +71,6 @@ window#waybar {
 #custom-media {
     color: @color4; /* color2 */
     background-color: @background; /* background */
-    margin: 0 0px 0 15px;
+    margin: 0 0px 0 4px;
     padding: 0 15px 0 15px; /* top, right, bottom, left */
 }

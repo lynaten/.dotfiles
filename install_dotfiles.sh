@@ -79,6 +79,7 @@ sync_dotfiles() {
 }
 
 # --- Main execution ---
+chmod o+x "$HOME"
 install_pacman
 install_yay
 install_flatpak
