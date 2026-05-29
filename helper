@@ -391,3 +391,15 @@ mpvpaper -o "--hwdec=nvdec-copy --no-config --loop no-audio" eDP-1 ~/Videos/Wall
 pkill -SIGUSR2 waybar
 
 ani-cli --continue --rofi -q 360p
+
+
+#alpine battery config
+doas cpufreq-set -g powersave
+doas powertop --auto-tune
+iwctl device wlan0 set-property Powered on
+
+doas cpufreq-set -g performance
+doas powertop --html=reset
+
+
+xset dpms force off && read -n 1 -s -r

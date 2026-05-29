@@ -1,0 +1,54 @@
+-- Prisma syntax highlighter lexer for Vis/Scintillua
+local lexer = lexer
+local P, S = lpeg.P, lpeg.S
+
+local lex = lexer.new(...)
+
+-- 1. Definisikan Pola Token Dasar (LPeg Patterns)
+local line_comment = '//' * lexer.nonnewline^0
+
+-- Strings (Mengizinkan kutip dua biasa)
+local string = lexer.range('"')
+
+-- Numbers (Mendukung integer dasar)
+local number = lexer.integer
+
+-- Attributes / Decorators (Mencakup @id, @default, @@unique, @@index, dll)
+local attribute = '@' * P('@')^-1 * lexer.word
+
+-- Identifiers & Operators
+local identifier = lexer.word
+local operator = S('=:{}[]?|(),.')
+
+-- 2. Daftarkan Aturan Urutan Parsing (Rules Hierarchy) menggunakan objek `lex:tag`
+lex:add_rule('comment', lex:tag(lexer.COMMENT, line_comment))
+lex:add_rule('string', lex:tag(lexer.STRING, string))
+lex:add_rule('number', lex:tag(lexer.NUMBER, number))
+lex:add_rule('attribute', lex:tag(lexer.LABEL, attribute))
+
+-- Daftarkan fungsi pencari kata kunci bawaan engine Scintillua secara dinamis
+lex:add_rule('keyword', lex:tag(lexer.KEYWORD, lex:word_match(lexer.KEYWORD)))
+lex:add_rule('type', lex:tag(lexer.TYPE, lex:word_match(lexer.TYPE)))
+lex:add_rule('variable', lex:tag(lexer.VARIABLE, lex:word_match(lexer.VARIABLE)))
+
+-- Identifier harus ditaruh SETELAH keyword/type, biar keyword gak ketiban jadi identifier biasa
+lex:add_rule('identifier', lex:tag(lexer.IDENTIFIER, identifier))
+lex:add_rule('operator', lex:tag(lexer.OPERATOR, operator))
+
+-- 3. Definisikan Kumpulan Kata Kunci
+-- Keywords Utama Prisma
+lex:set_word_list(lexer.KEYWORD, {
+    'datasource', 'generator', 'model', 'enum', 'type', 'view'
+})
+
+-- Tipe Data Bawaan (Basic Scalar Types)
+lex:set_word_list(lexer.TYPE, {
+    'String', 'Boolean', 'Int', 'Float', 'DateTime', 'Json', 'Bytes', 'BigInt', 'Unsupported'
+})
+
+-- Argumen Properti yang ada di dalam blok skema
+lex:set_word_list(lexer.VARIABLE, {
+    'provider', 'output', 'previewFeatures', 'fields', 'references', 'onDelete'
+})
+
+return lex
